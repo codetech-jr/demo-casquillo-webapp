@@ -28,13 +28,24 @@ export function TableMap() {
             try {
                 const dateParam = getDateFromDay(selectedDay);
                 const res = await fetch(`/api/tables?date=${dateParam}`);
+
+                if (!res.ok) {
+                    throw new Error(`API returned status ${res.status}`);
+                }
+
                 const data = await res.json();
                 if (Array.isArray(data)) {
                     // Ordenar por número para evitar desórdenes de la BD
                     setDynamicTables(data.sort((a, b) => a.number - b.number));
+                } else {
+                    throw new Error("API did not return an array");
                 }
             } catch (error) {
-                console.error("Failed to fetch tables", error);
+                console.error("Failed to fetch tables from DB, using fallback mock data:", error);
+                // Fallback to local mock data for Vercel/Demo environments where SQLite fails
+                import("@/lib/data").then((mod) => {
+                    setDynamicTables([...mod.TABLES]);
+                });
             } finally {
                 setIsLoading(false);
             }
