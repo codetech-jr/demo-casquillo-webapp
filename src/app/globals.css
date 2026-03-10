@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-zinc-950: #09090b;
+  --color-zinc-900: #18181b;
+  --color-yellow-500: #eab308;
+  --color-emerald-500: #10b981;
+  --color-red-500: #ef4444;
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+}
+
+/* Luxury animation easing — cubic-bezier(0.22, 1, 0.36, 1) */
+:root {
+  --ease-luxury: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Checkout drawer — luxury sliding transition */
+.drawer-slide-enter {
+  transition: transform 0.4s var(--ease-luxury), opacity 0.4s var(--ease-luxury);
+}
+
+body {
+  background-color: #09090b;
+  color: #ffffff;
+}
+
+/* Dark luxury selection highlight */
+::selection {
+  background-color: rgba(234, 179, 8, 0.3);
+  color: #eab308;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
