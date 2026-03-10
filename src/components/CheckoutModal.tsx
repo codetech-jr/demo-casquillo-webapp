@@ -72,7 +72,7 @@ export function CheckoutModal() {
 
         setIsSubmitting(false);
         const encodedMessage = encodeURIComponent(message);
-        const whatsappUrl = `https://wa.me/584120000000?text=${encodedMessage}`;
+        const whatsappUrl = `https://wa.me/584126762060?text=${encodedMessage}`;
 
         window.open(whatsappUrl, "_blank");
         setCheckoutOpen(false);
